@@ -36,7 +36,7 @@ public class World extends View {
     private static final int NUM_ROWS=26;
     private static final int NUM_COLS=16;
 
-    // Ein Beispiel für die Definition eines Levels über einen String
+    // Ein Beispiel für die Definition eines Levels über einen String (NUM_ROWS x NUM_COLS)
     // Die einzelnen Buchstaben repräsentieren die Spielobjekte und ihre Position:
     // . - leere Kachel
     // b - Startposition der Spielkugel
@@ -71,32 +71,36 @@ public class World extends View {
             ".......tt......."+
             "................";
     
+    //TODO AP ALL: weitere Level entwerfen
+    
     //Konstruktor
     public World(Context context, GravitySensorListener sensorListener, int level, int difficulty) {
     	super(context);
-    	//TODO member initilisieren (außer Spielfeld)
+    	//TODO AP2: Member initialisieren (außer Spielfeldobjekte, diese können erst in onSizeChanged inistalisiert werden)
     }
 
     // vom System gelieferte Bildschirmgröße merken und die Kachelgröße berechnen, Spielfeld anlegen 
     @Override
     protected void onSizeChanged(int width, int height, int oldw, int oldh) {
-    	//TODO Kachelgröße berechnen
-    	//TODO bitmaps initialisieren
-        //TODO Spielfeld-Objekte anlegen (Kugel, Ziel, Hindernisse)
+    	//TODO AP2: widht, heigth speichern; nur Kugel in Spielfeldmitte anlegen
+    	//TODO AP Welt: Kachelgröße berechnen
+    	//TODO AP Welt: Bitmaps initialisieren
+        //TODO AP Welt: Spielfeld-Objekte anlegen (Kugel, Ziel, Hindernisse)
 
     }
 
     // Spielwelt darstellen (Hintergrund,Kugel,Hindernisse, Ziel), Spiellogik (Reaktion auf Ziel, Hindernisse)
     @Override
     protected void onDraw(Canvas canvas) {
+    	//TODO AP2: Hintergrund löschen, Kugel bewegen, Kugel zeichnen
+    	
+    	//TODO AP Welt: Hintergrund zeichnen
+    	//TODO AP Welt: Ziel zeichnen
+    	//TODO AP Welt: Hindernisse zeichnen
+    	//TODO AP Welt: Kugel bewegen und zeichnen
 
-    	//TODO Hintergrund zeichnen
-    	//TODO Ziel zeichnen
-    	//TODO Hindernisse zeichnen
-    	//TODO Kugel bewegen und zeichnen
-
-    	//TODO Test auf Kollision mit Hindernissen und Reaktion
-    	//TODO Test auf Erreichen des Ziels und Reaktion
+    	//TODO AP Welt: Test auf Kollision mit Hindernissen und Reaktion
+    	//TODO AP Welt: Test auf Erreichen des Ziels und Reaktion
 
         // sofortiges Neuzeichnen auslösen
         invalidate();
