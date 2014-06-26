@@ -19,55 +19,82 @@ class Ball {
     private int mStartY;
     private int mTileSize;
     private int mBallRadius;
-    private Paint mPaint;
     private Bitmap mBitmap;
+    private Paint mPaint;
 
-    //Membervariablen mit bewegtne Kugeldaten (aktuelle und letzte Position, im letzten Schritt zurückgelegte Bewegung)
+    //Membervariablen mit bewegten Kugeldaten (aktuelle Position)
     private float mPosX;
     private float mPosY;
-    private float mMovementX;
-    private float mMovementY;
-    private float mLastPosX;
-    private float mLastPosY;
 
-    //Konstruktor
+    /** Konstruktor 
+     * @param x Startposition X der Kugel
+     * @param y Startposition Y der Kugel
+     * @param tileSize Kachelgröße
+     * @param radius Kugelradius
+     * @param bitmap Bitmap der Kugel
+     */
     Ball(int x, int y, int tileSize, int radius, Bitmap bitmap) {
-    //TODO AP2: Übergabeparamter in Membervariablen speichern, mPaint initialisieren
+    //TODO AP2: Übergabeparameter in Membervariablen speichern, mPaint initialisieren
+    //TODO AP Kugel: restliche Membervariablen initialisieren, Startposition merken
     }
 
-    //setze Kugel auf Startposition zurück
+    /** setze Kugel auf Startposition zurück */
     public void reset(){
+    	//TODO AP Kugel: Position zurücksetzen
      }
 
-    //berechne neue Kugelposition aus Accelerometerwerten
+    /** berechne neue Kugelposition aus Accelerometerwerten 
+     * @param sensorX X-Wert des Neigungssensors
+     * @param sensorY Y-Wert des Neigungssensors
+     */
     public void update(float sensorX, float sensorY) {
         //TODO AP2: als Testimplementierung die Sensorwerte auf die Kugelposition aufaddieren
     	//TODO AP Kugel: Kugelposition mit Sensordaten aktualisieren 
     }
 
-    //korrigiere die Position, wenn die Kugel das Spielfeld verlässt
-    //signalisiere eine Kollision an den Aufrufer, wenn die letzte Bewegung größer als die Schwelle ist
+    /** korrigiere die Position, wenn die Kugel das Spielfeld verlässt
+     * @param width Spielfeldbreite
+     * @param height Spielfeldhöhe
+     * @return true, wenn eine Kollision mit den Wänden erfolgt ist
+     */
     public boolean resolveCollisionWithBounds(int width, int height) {
+    	//TODO AP Kugel: Kugelposition innerhalb des Spielfelds halten
+    	//TODO AP Kugel: true zurückliefern bei Kollision mit den Wänden 
     	return false;
     }
 
-    //teste ob Kugelzentrum innerhalb des Kachelobjekts ist
-    //bei quadratischen Objekten betrachte Abstand entlang X/Y-Achse
-    //bei kreisförmigen Objekten berechne Abstand zum Kreisrand
+    /** teste ob Kugelzentrum innerhalb des Kachelobjekts ist,
+     * bei quadratischen Objekten betrachte Abstand entlang X/Y-Achse,
+     * bei kreisförmigen Objekten berechne Abstand zum Kreisrand
+     * @param tile Kachel
+     * @return true, wenn Kugelzentrum über aktivem (Rechteck,Kreis)-Bereich der Kachel ist
+     */
     public boolean centerIsOnTile(Tile tile) {
+    	//TODO AP Kugel: Kugelposition testen
     	return false;
     }
 
-    //berechne X-Abstand von Kugelzentrum zu Kachelzentrum
+    /** berechne X-Abstand von Kugelzentrum zu Kachelzentrum
+     * @param tile Kachel
+     * @return Abstand in X-Koordinatenrichtung
+     */
     private float calcDistanceX(Tile tile){
-    	return 0.0f;
-    }
-    //berechne Y-Abstand von Kugelzentrum zu Kachelzentrum
-    private float calcDistanceY(Tile tile){
+    	//TODO AP Kugel: Abstand X berechnen
     	return 0.0f;
     }
 
-    //zeichne die Kugelbitmap an der aktuellen (gerundeten) Position
+    /** berechne Y-Abstand von Kugelzentrum zu Kachelzentrum
+     * @param tile Kachel
+     * @return Abstand in Y-Koordinatenrichtung
+     */
+    private float calcDistanceY(Tile tile){
+    	//TODO AP Kugel: Abstand Y berechnen
+    	return 0.0f;
+    }
+
+    /** zeichne die Kugelbitmap an der aktuellen (gerundeten) Position
+     * @param canvas Leinwand
+     */
     public void draw(Canvas canvas) {
         //TODO AP2: einen Kreis mit Kugelradius an der Kugelposition zeichnen
     	//TODO AP Kugel: die Kugelbitmap an der Kugelposition darstellen 

@@ -54,4 +54,5 @@ public class GameActivity extends Activity {
          //TODO AP2: stoppe den SensorListener (das spart Strom, wenn die App nicht im Vordergrund ist)
      }
 
+   // TODO AP Framework: evtl weitere benötigte Methoden...
 }

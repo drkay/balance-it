@@ -20,7 +20,9 @@ public class StartActivity extends Activity {
         setContentView(R.layout.activity_start);
     }
 
-    /** Callback-Methode, die beim Klick auf die Buttons aufgerufen wird */
+    /** Callback-Methode, die beim Klick auf die Buttons aufgerufen wird 
+     * @param view Objekt, auf das geklickt wurde
+     */
     public void startGame(View view){
 
         //rufe die GameActivity über einen Intent auf 

@@ -15,7 +15,9 @@ public class GravitySensorListener implements SensorEventListener {
     public float mSensorY;
     public long mSensorTimeStamp;
 
-    // Callback-Methode von SensorEventListener, die aufgerufen wird, wenn dem System neue Sensordaten vorliegen
+    /** Callback-Methode von SensorEventListener, die aufgerufen wird, wenn dem System neue Sensordaten vorliegen
+     * @param event Sensorevent mit aktuellen Sensordaten
+     */
     @Override
     public void onSensorChanged(SensorEvent event) {
         //wir sind nur an Daten des Gravitationssensors interessiert
@@ -28,7 +30,7 @@ public class GravitySensorListener implements SensorEventListener {
         mSensorTimeStamp = event.timestamp;
     }
 
-    // Callback-Methode von SensorEventListener (bleibt leer, da uns Genauigkeitsänderungen nicht interessieren)
+    /**Callback-Methode von SensorEventListener (bleibt leer, da uns Genauigkeitsänderungen nicht interessieren) */
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
