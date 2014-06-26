@@ -2,7 +2,6 @@ package com.example.balanceit;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
