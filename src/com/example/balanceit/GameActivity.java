@@ -1,10 +1,9 @@
 package com.example.balanceit;
 
 import android.app.Activity;
+import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.example.balanceit.R;
@@ -29,11 +28,15 @@ public class GameActivity extends Activity {
         // verhindert, dass der Bildschirm ausgeht, wenn keine Touch-Events mehr kommen
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
+        //hole eine Instanz des Android SensorManagers
+        mSensorManager=(SensorManager) getSystemService(SENSOR_SERVICE);
+
         //TODO AP Framework: Level, Schwierigkeitsgrad von der aufrufenden Activity lesen und an World-Objekt übergeben
 
-        //TODO AP2: Member initialisieren (SensorManager, SensorListener und World Instanzen)
+        //TODO AP2: Member initialisieren (SensorListener und World Instanzen)
 		
-		//TODO AP2: World-Instanz als ContentView setzen
+		//TODO AP2: World-Instanz statt activity_game.xml als ContentView setzen
+        setContentView(R.layout.activity_game);
 	}
     
     /** Callback-Methode, wenn die Aktivität aktiv wird (in den Vordergrund kommt) */
@@ -43,6 +46,7 @@ public class GameActivity extends Activity {
          super.onResume();
 
          //TODO AP2: registriere den SensorListener
+         // mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY),SensorManager.SENSOR_DELAY_GAME);
      }
 
      /** Callback-Methode, wenn die Aktivität inaktiv wird (nicht mehr im Vordergrund ist) */
@@ -52,6 +56,7 @@ public class GameActivity extends Activity {
          super.onPause();
 
          //TODO AP2: stoppe den SensorListener (das spart Strom, wenn die App nicht im Vordergrund ist)
+         //mSensorManager.unregisterListener(mSensorListener);
      }
 
    // TODO AP Framework: evtl weitere benötigte Methoden...
