@@ -18,7 +18,7 @@ class Ball {
     private int mStartX;
     private int mStartY;
     private int mTileSize;
-    private int mBallRadius;
+    private int mRadius;
     private Bitmap mBitmap;
     private Paint mPaint;
 
