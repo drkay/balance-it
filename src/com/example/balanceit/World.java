@@ -40,7 +40,7 @@ public class World extends View {
     private static final int NUM_ROWS=26;
     private static final int NUM_COLS=16;
 
-    /** Ein Beispiel für die Definition eines Levels über einen String
+    /** Ein Beispiel für die Definition eines Levels über einen String (NUM_ROWS x NUM_COLS)
      * Die einzelnen Buchstaben repräsentieren die Spielobjekte und ihre Position:
      * . - leere Kachel
      * b - Startposition der Spielkugel
@@ -76,6 +76,8 @@ public class World extends View {
             ".......tt......."+
             "................";
     
+    //TODO AP ALL: weitere Level entwerfen
+    
     /** Konstruktor
      * @param context Kontext-Objekt der Android-Activity
      * @param sensorListener SensorListener-Objekt mit aktuellen Sensordaten 
@@ -96,7 +98,7 @@ public class World extends View {
      */
     @Override
     protected void onSizeChanged(int width, int height, int oldw, int oldh) {
-    	//TODO AP2: Spielkugel mit Dummywerten anlegen
+    	//TODO AP2: width, height speichern, nur Kugel in Spielfeldmitte anlegen 
     	//TODO AP Welt: Kachelgröße berechnen
     	//TODO AP Welt: Bitmaps initialisieren
         //TODO AP Welt: Spielfeld-Objekte anlegen (Kugel, Ziel, Hindernisse)
