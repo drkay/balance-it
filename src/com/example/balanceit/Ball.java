@@ -47,7 +47,7 @@ class Ball {
      * @param sensorX X-Wert des Neigungssensors
      * @param sensorY Y-Wert des Neigungssensors
      */
-    public void update(float sensorX, float sensorY) {
+    public void updatePosition(float sensorX, float sensorY) {
         //TODO AP2: als Testimplementierung die Sensorwerte auf die Kugelposition aufaddieren
     	//TODO AP Kugel: Kugelposition mit Sensordaten aktualisieren 
     }
