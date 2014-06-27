@@ -14,6 +14,9 @@ import java.util.List;
  */
 public class World extends View {
 
+	//LOGTAG constant marking debug output in system log
+	public static final String LOGTAG="BalanceIt";
+	
 	//Hilfsobjekte
     private FXHelper mHelper;
     private GravitySensorListener mSensorListener;
