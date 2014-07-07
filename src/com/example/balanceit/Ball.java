@@ -15,8 +15,6 @@ import android.graphics.Paint;
 class Ball {
 
     //Membervariablen mit unveränderlichen Kugeldaten (Startposition, Kachelgröße, Kugelradius, Bitmap)
-    private int mStartX;
-    private int mStartY;
     private int mTileSize;
     private int mRadius;
     private Bitmap mBitmap;
