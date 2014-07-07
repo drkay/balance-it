@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class World extends View {
 
-	//LOGTAG constant marking debug output in system log
+	//LOGTAG Konstante zum Markieren von Debugausgaben im System Log
 	public static final String LOGTAG="BalanceIt";
 	
 	//Hilfsobjekte
