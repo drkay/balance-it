@@ -18,6 +18,7 @@ class Ball {
     //Membervariablen mit unveränderlichen Kugeldaten (Startposition, Kachelgröße, Kugelradius, Bitmap)
     private int mTileSize;
     private int mRadius;
+    private int mDifficulty;
     private Bitmap mBitmap;
     private Paint mPaint;
 
@@ -32,13 +33,13 @@ class Ball {
      * @param radius Kugelradius
      * @param bitmap Bitmap der Kugel
      */
-    Ball(int x, int y, int tileSize, int radius, Bitmap bitmap) {
+    Ball(int x, int y, int tileSize, int radius, int difficulty, Bitmap bitmap) {
     //TODO AP2: Übergabeparameter in Membervariablen speichern, mPaint initialisieren
     	mPosX=x;
     	mPosY=y;
     	mTileSize=tileSize;
     	mRadius=radius;
-    	
+    	mDifficulty=difficulty;
     	mPaint=new Paint();
     	mPaint.setColor(Color.RED);
     //TODO AP Kugel: restliche Membervariablen initialisieren, Startposition merken

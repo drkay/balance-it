@@ -70,23 +70,13 @@ public class FXHelper {
    //fertig programmierte Hilfsfunktionen:
     
    /** zeige eine Erfolgsmeldung an und kehre zur aufrufenden Activity zurück	 */
-	public void showSuccessDialogAndReturnToStartActivity() {
-        new AlertDialog.Builder(mContext)
-        .setTitle("CONGRATULATIONS")
-        .setMessage("You solved the level!")
-        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                Activity activity = (Activity)mContext;
-                activity.setResult(Activity.RESULT_OK, null); 
-                activity.finish();
-            }
-        })
+	public void showDialog(Context context, String title, String message) {
+        new AlertDialog.Builder(context)
+        .setTitle(title)
+        .setMessage(message)
+        .setPositiveButton(android.R.string.ok, null)
         .setIcon(android.R.drawable.ic_dialog_alert);
 		
 	}
 	
-	/** gib eine Debugmeldung in das Android SystemLog aus */
-	public void log(String message){
-		Log.v("BalanceIt",message);
-	}
 }
