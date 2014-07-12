@@ -34,9 +34,11 @@ public class GameActivity extends Activity {
         //TODO AP Framework: Level, Schwierigkeitsgrad von der aufrufenden Activity lesen und an World-Objekt übergeben
 
         //TODO AP2: Member initialisieren (SensorListener und World Instanzen)
+        mSensorListener=new GravitySensorListener();
+		mWorld = new World(this,mSensorListener,0,0);
 		
 		//TODO AP2: World-Instanz statt activity_game.xml als ContentView setzen
-        setContentView(R.layout.activity_game);
+        setContentView(mWorld);
 	}
     
     /** Callback-Methode, wenn die Aktivität aktiv wird (in den Vordergrund kommt) */
@@ -46,7 +48,7 @@ public class GameActivity extends Activity {
          super.onResume();
 
          //TODO AP2: registriere den SensorListener
-         // mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY),SensorManager.SENSOR_DELAY_GAME);
+         mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY),SensorManager.SENSOR_DELAY_GAME);
      }
 
      /** Callback-Methode, wenn die Aktivität inaktiv wird (nicht mehr im Vordergrund ist) */
@@ -56,7 +58,7 @@ public class GameActivity extends Activity {
          super.onPause();
 
          //TODO AP2: stoppe den SensorListener (das spart Strom, wenn die App nicht im Vordergrund ist)
-         //mSensorManager.unregisterListener(mSensorListener);
+         mSensorManager.unregisterListener(mSensorListener);
      }
 
    // TODO AP Framework: evtl weitere benötigte Methoden...

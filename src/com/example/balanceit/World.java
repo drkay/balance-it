@@ -1,7 +1,10 @@
 package com.example.balanceit;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -20,7 +23,8 @@ public class World extends View {
 	//Hilfsobjekte
     private FXHelper mHelper;
     private GravitySensorListener mSensorListener;
-
+    private Paint mPaint;
+    
     //Statusvariablen
     private boolean mTargetReached=false;
     private boolean mHoleDropped=false;
@@ -89,6 +93,10 @@ public class World extends View {
     public World(Context context, GravitySensorListener sensorListener, int level, int difficulty) {
     	super(context);
     	//TODO AP2: Übergabeparameter sensorListener in Membervariable speichern
+    	mSensorListener=sensorListener;
+    	mPaint=new Paint();
+    	mPaint.setColor(Color.GRAY);
+    	
     	//TODO AP Welt: restliche Übergabeparameter speichern, Hilfsobjekte anlegen
     }
 
@@ -100,7 +108,10 @@ public class World extends View {
      */
     @Override
     protected void onSizeChanged(int width, int height, int oldw, int oldh) {
-    	//TODO AP2: width, height speichern, nur Kugel in Spielfeldmitte anlegen 
+    	//TODO AP2: width, height speichern, nur Kugel in Spielfeldmitte anlegen
+    	mWidth = width;
+    	mHeight = height;
+    	mBall = new Ball(width/2,height/2,width/20,width/20,null);
     	//TODO AP Welt: Kachelgröße berechnen
     	//TODO AP Welt: Bitmaps initialisieren
         //TODO AP Welt: Spielfeld-Objekte anlegen (Kugel, Ziel, Hindernisse)
@@ -114,8 +125,20 @@ public class World extends View {
     protected void onDraw(Canvas canvas) {
 
     	//TODO AP2: Hintergrund löschen
+    	canvas.drawColor(Color.BLACK);
+    	//TODO AP2: Ziel zeichnen
+    	canvas.drawRect(0, 0.8f*mHeight, mWidth, mHeight, mPaint);
     	//TODO AP2: Kugel bewegen
+    	mBall.updatePosition(-mSensorListener.mSensorX,mSensorListener.mSensorY);
     	//TODO AP2: Kugel zeichnen
+    	mBall.draw(canvas);
+    	//TODO AP2: Test ob Ziel erreicht
+    	if (mBall.mPosY>0.8*mHeight){
+    		Activity activity = (Activity) getContext();
+     		activity.setResult(Activity.RESULT_OK);
+    		activity.finish();
+    	}
+    	
     	
     	//TODO AP Welt: Hintergrund zeichnen
     	//TODO AP Welt: Ziel & Hindernisse zeichnen

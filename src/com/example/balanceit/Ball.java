@@ -2,6 +2,7 @@ package com.example.balanceit;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 
 /**
@@ -21,8 +22,8 @@ class Ball {
     private Paint mPaint;
 
     //Membervariablen mit bewegten Kugeldaten (aktuelle Position)
-    private float mPosX;
-    private float mPosY;
+    public float mPosX;
+    public float mPosY;
 
     /** Konstruktor 
      * @param x Startposition X der Kugel
@@ -33,6 +34,13 @@ class Ball {
      */
     Ball(int x, int y, int tileSize, int radius, Bitmap bitmap) {
     //TODO AP2: Übergabeparameter in Membervariablen speichern, mPaint initialisieren
+    	mPosX=x;
+    	mPosY=y;
+    	mTileSize=tileSize;
+    	mRadius=radius;
+    	
+    	mPaint=new Paint();
+    	mPaint.setColor(Color.RED);
     //TODO AP Kugel: restliche Membervariablen initialisieren, Startposition merken
     }
 
@@ -47,6 +55,9 @@ class Ball {
      */
     public void updatePosition(float sensorX, float sensorY) {
         //TODO AP2: als Testimplementierung die Sensorwerte auf die Kugelposition aufaddieren
+    	mPosX=mPosX+8*sensorX;
+    	mPosY=mPosY+8*sensorY;
+    	
     	//TODO AP Kugel: Kugelposition mit Sensordaten aktualisieren 
     }
 
@@ -95,6 +106,7 @@ class Ball {
      */
     public void draw(Canvas canvas) {
         //TODO AP2: einen Kreis mit Kugelradius an der Kugelposition zeichnen
+    	canvas.drawCircle(mPosX,mPosY,mRadius,mPaint);
     	//TODO AP Kugel: die Kugelbitmap an der Kugelposition darstellen 
     }
 }
