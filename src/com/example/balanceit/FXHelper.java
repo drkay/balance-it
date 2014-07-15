@@ -70,12 +70,13 @@ public class FXHelper {
    //fertig programmierte Hilfsfunktionen:
     
    /** zeige eine Erfolgsmeldung an und kehre zur aufrufenden Activity zurück	 */
-	public void showDialog(Context context, String title, String message) {
+	static public void showDialog(Context context, String title, String message) {
         new AlertDialog.Builder(context)
         .setTitle(title)
         .setMessage(message)
         .setPositiveButton(android.R.string.ok, null)
-        .setIcon(android.R.drawable.ic_dialog_alert);
+        .setIcon(android.R.drawable.ic_dialog_alert)
+        .show();
 		
 	}
 	
