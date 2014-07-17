@@ -112,7 +112,7 @@ public class World extends View {
     	//TODO AP2: width, height speichern, nur Kugel in Spielfeldmitte anlegen
     	mWidth = width;
     	mHeight = height;
-    	mBall = new Ball(width/2,height/2,width/20,width/20,0,null);
+    	mBall = new Ball(width/2,height/2,width/20,0,0,null);
     	//TODO AP Welt: Kachelgröße berechnen
     	//TODO AP Welt: Bitmaps initialisieren
         //TODO AP Welt: Spielfeld-Objekte anlegen (Kugel, Ziel, Hindernisse)

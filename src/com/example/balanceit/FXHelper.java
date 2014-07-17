@@ -51,8 +51,9 @@ public class FXHelper {
      * @param screenWidth Spielfeldbreite
      * @param screenHeight Spielfeldhöhr
      * @param tileSize Kachelgröße
+     * @param ballRadius Radius der Spielkugel
      */
-    public void initBitmaps(int screenWidth, int screenHeight, int tileSize){
+    public void initBitmaps(int screenWidth, int screenHeight, int tileSize, int ballRadius){
     	//TODO AP Effekte: die Bitmaps für die verschiedenen Spielobjekte (Hindernis, Zielbereich, Spielkugel, Hintergrund) einlesen
     	// auf die richtige Größe (abhängig von Bildschirm-& Kachelgröße) skalieren und in Membervariablen zwischenspeichern    	
     }
@@ -69,7 +70,11 @@ public class FXHelper {
     
    //fertig programmierte Hilfsfunktionen:
     
-   /** zeige eine Erfolgsmeldung an und kehre zur aufrufenden Activity zurück	 */
+   /** zeige eine Erfolgsmeldung an und kehre zur aufrufenden Activity zurück
+    * @param context Verweis auf die aufrufende Activity (kann meist als this übergeben werden)
+    * @param title Titel der Dialogbox
+    * @param message Text der Dialogbox
+    */
 	static public void showDialog(Context context, String title, String message) {
         new AlertDialog.Builder(context)
         .setTitle(title)

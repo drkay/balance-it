@@ -20,7 +20,7 @@ class Ball {
     private int mRadius;
     private int mDifficulty;
     private Bitmap mBitmap;
-    private Paint mPaint;
+    private Paint mPaint; 
 
     //Membervariablen mit bewegten Kugeldaten (aktuelle Position)
     public float mPosX;
@@ -29,11 +29,12 @@ class Ball {
     /** Konstruktor 
      * @param x Startposition X der Kugel
      * @param y Startposition Y der Kugel
-     * @param tileSize Kachelgröße
      * @param radius Kugelradius
+     * @param tileSize Kachelgröße
+     * @param difficulty Schwierigkeitsgrad/Geschwindigkeit der Kugelbewegung
      * @param bitmap Bitmap der Kugel
      */
-    Ball(int x, int y, int tileSize, int radius, int difficulty, Bitmap bitmap) {
+    Ball(int x, int y, int radius,  int tileSize, int difficulty, Bitmap bitmap) {
     //TODO AP2: Übergabeparameter in Membervariablen speichern, mPaint initialisieren
     	mPosX=x;
     	mPosY=y;
