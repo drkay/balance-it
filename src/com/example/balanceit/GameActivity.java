@@ -35,7 +35,7 @@ public class GameActivity extends Activity {
 
         //TODO AP2: Member initialisieren (SensorListener und World Instanzen)
         mSensorListener=new GravitySensorListener();
-		mWorld = new World(this,mSensorListener,0,0);
+		mWorld = new World(this,mSensorListener,1,0);
 		
 		//TODO AP2: World-Instanz statt activity_game.xml als ContentView setzen
         setContentView(mWorld);

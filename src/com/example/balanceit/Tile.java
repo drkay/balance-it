@@ -19,7 +19,8 @@ public class Tile {
     int mPosY;
     int mTileSize;
     Bitmap mBitmap;
-    Paint mPaint;
+    Paint mPaintBlue;
+    Paint mPaintGray;
 
     //TODO AP Welt: weitere Membervariablen (mPosX, mPosY, mBitmap) 
 
@@ -36,18 +37,23 @@ public class Tile {
     	mPosY=y;
     	mTileSize=tileSize;
     	mBitmap=bitmap;
-    	mPaint=new Paint();
-    	mPaint.setColor(Color.BLUE);
+    	mPaintBlue=new Paint();
+    	mPaintBlue.setColor(Color.BLUE);
+    	mPaintGray=new Paint();
+    	mPaintGray.setColor(Color.GRAY);
 
     }
 
-    /**zeichne die Kachelbitmap an der Position mPosX/Y
+    /** zeichne die Kachelbitmap an der Position mPosX/Y
      * @param canvas Leinwand
      */
     void draw(Canvas canvas){
-        if (mBitmap==null)
-        	canvas.drawRect(mPosX,mPosY,mPosX+mTileSize,mPosY+mTileSize, mPaint);
-        else        	
+        if (mBitmap==null){
+        	if (mType==Type.SQUARE)
+        		canvas.drawRect(mPosX,mPosY,mPosX+mTileSize,mPosY+mTileSize, mPaintGray);
+        	else
+        		canvas.drawCircle(mPosX+mTileSize/2,mPosY+mTileSize/2,mTileSize/2,mPaintBlue);        		
+        } else        	
         	canvas.drawBitmap(mBitmap,mPosX,mPosY,null);
         
     }
