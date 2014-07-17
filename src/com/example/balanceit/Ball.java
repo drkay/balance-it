@@ -107,8 +107,13 @@ class Ball {
      * @param canvas Leinwand
      */
     public void draw(Canvas canvas) {
-        //TODO AP2: einen Kreis mit Kugelradius an der Kugelposition zeichnen
-    	canvas.drawCircle(mPosX,mPosY,mRadius,mPaint);
-    	//TODO AP Kugel: die Kugelbitmap an der Kugelposition darstellen 
+    	//solange keine Bitmap vorhanden ist, einen Kreis zeichen
+    	if (mBitmap==null){
+            //TODO AP2: einen Kreis mit Kugelradius an der Kugelposition zeichnen
+    		canvas.drawCircle(mPosX+mRadius,mPosY+mRadius,mRadius,mPaint);
+    	} else {
+    		canvas.drawBitmap(mBitmap, (int) (mPosX+0.5), (int) (mPosY+0.5), null);
+    	}
+    		
     }
 }
