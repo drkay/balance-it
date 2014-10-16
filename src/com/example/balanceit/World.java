@@ -2,6 +2,7 @@ package com.example.balanceit;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -9,6 +10,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.balanceit.FXHelper.ObjectType;
 
 /**
  * Die World-Klasse repräsentiert die Spielwelt.
@@ -46,6 +49,7 @@ public class World extends View {
     //Spielfeldgröße 16x26 Kacheln, das ist ~16:9, das Seitenverhältnis der meisten Smartphones
     private static final int NUM_ROWS=26;
     private static final int NUM_COLS=16;
+    
 
     /** Ein Beispiel für die Definition eines Levels über einen String (NUM_ROWS x NUM_COLS)
      * Die einzelnen Buchstaben repräsentieren die Spielobjekte und ihre Position:
@@ -82,6 +86,29 @@ public class World extends View {
             ".......tt......."+
             ".......tt......."+
             "................";
+   
+  
+    
+    
+    
+    private void createGameObjects(char objectType, int col, int row) {
+    	    	
+    	if(objectType == 'h') {
+    		Bitmap holeBitmap = mHelper.getBitmap(ObjectType.HOLE);
+    		mHoles.add(new Tile(Tile.Type.CIRCLE, col*mTileSize, row*mTileSize, mTileSize, holeBitmap));
+    	}
+    	
+    	if(objectType == 't') {
+    		Bitmap tileBitmap = mHelper.getBitmap(ObjectType.TARGET);
+    		mTargets.add(new Tile(Tile.Type.SQUARE, col*mTileSize, row*mTileSize, mTileSize, tileBitmap));
+    	}
+    	
+    	if(objectType == 'b') {
+    		Bitmap ballBitmap = mHelper.getBitmap(ObjectType.BALL);
+        	mBall = new Ball(col*mTileSize, row*mTileSize, mTileSize/2, mTileSize, mDifficulty, ballBitmap);
+    	}
+    }
+    
     
     //TODO AP ALL: weitere Level entwerfen
     
@@ -114,11 +141,25 @@ public class World extends View {
     	//TODO AP2: width, height speichern, nur Kugel in Spielfeldmitte anlegen
     	mWidth = width;
     	mHeight = height;
-    	mBall = new Ball(width/2,height/2,width/20,0,mDifficulty,null);
-    	//TODO AP Welt: Kachelgröße berechnen
+    	
+    	mTileSize = width/NUM_COLS;
+    	mHelper.initBitmaps(mWidth, mHeight, mTileSize, width/20);
+    	//TODO AP Welt: Kachelgr��e berechnen
     	//TODO AP Welt: Bitmaps initialisieren
         //TODO AP Welt: Spielfeld-Objekte anlegen (Kugel, Ziel, Hindernisse)
-
+    	 
+        char c;
+        int index = 0;
+        
+        	for(int row = 0; row < NUM_ROWS; row++) {
+        		for(int col = 0; col < NUM_COLS; col++) {
+        			
+        			c = BOARD1.charAt(index++);
+        			
+        			createGameObjects(c, col, row);
+        		}    	
+        	}    
+        
     }
 
     /** Spielwelt darstellen (Hintergrund,Kugel,Hindernisse, Ziel), Spiellogik (Reaktion auf Ziel, Hindernisse)
@@ -127,29 +168,44 @@ public class World extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 
-    	//TODO AP2: Hintergrund löschen
+    	//TODO AP2: Hintergrund l�schen
     	canvas.drawColor(Color.BLACK);
     	//TODO AP2: Ziel zeichnen
-    	canvas.drawRect(0, 0.8f*mHeight, mWidth, mHeight, mPaint);
-    	//TODO AP2: Kugel bewegen
-    	mBall.updatePosition(-mSensorListener.mSensorX,mSensorListener.mSensorY);
-    	//TODO AP2: Kugel zeichnen
-    	mBall.draw(canvas);
-    	//TODO AP2: Test ob Ziel erreicht
-    	if (mBall.mPosY>0.8*mHeight){
-    		Activity activity = (Activity) getContext();
-     		activity.setResult(Activity.RESULT_OK);
-    		activity.finish();
-    	}
-    	
-    	
+    	  	    	    	
     	//TODO AP Welt: Hintergrund zeichnen
     	//TODO AP Welt: Ziel & Hindernisse zeichnen
-    	//TODO AP Welt: Kugel bewegen und zeichnen
+    	
+    	//canvas.drawBitmap(bitmap, 0, 0, null);
+   	for(Tile t:mHoles) {
+    		t.draw(canvas);
+    	}
+    	
+    	for(Tile z:mTargets) {
+    		z.draw(canvas);
+    	}
+    	
+    	//TODO AP2: Kugel bewegen
+    	mBall.updatePosition(-mSensorListener.mSensorX,mSensorListener.mSensorY);
+    	mBall.resolveCollisionWithBounds(mWidth, mHeight);
+    	 //TODO AP2: Kugel zeichnen
+    	mBall.draw(canvas);
+    	//TODO AP2: Test ob Ziel erreicht
 
     	//TODO AP Welt: Test auf Kollision mit Hindernissen und Reaktion
+    	for(Tile t:mHoles) {
+    		if(mBall.centerIsOnTile(t)) {
+    			mBall.reset();
+    		}
+    	}
+    	
     	//TODO AP Welt: Test auf Erreichen des Ziels und Reaktion
-
+    	for(Tile z:mTargets) {
+    		if(mBall.centerIsOnTile(z)) {
+    			Activity a = (Activity) getContext();
+    			a.setResult(Activity.RESULT_OK);
+    			a.finish();
+    		}
+    	}
         // sofortiges Neuzeichnen auslösen
         invalidate();
     }
