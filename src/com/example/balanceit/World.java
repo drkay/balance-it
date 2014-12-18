@@ -19,7 +19,7 @@ import com.example.balanceit.FXHelper.ObjectType;
  * Zum Zeichnen der Spielwelt wird die onDraw-Methode aus der View-Basisklasse neu implementiert.
  */
 public class World extends View {
-
+	
 	//LOGTAG Konstante zum Markieren von Debugausgaben im System Log
 	public static final String LOGTAG="BalanceIt";
 	
@@ -49,6 +49,7 @@ public class World extends View {
     //Spielfeldgröße 16x26 Kacheln, das ist ~16:9, das Seitenverhältnis der meisten Smartphones
     private static final int NUM_ROWS=26;
     private static final int NUM_COLS=16;
+    
     
 
     /** Ein Beispiel für die Definition eines Levels über einen String (NUM_ROWS x NUM_COLS)
@@ -87,6 +88,91 @@ public class World extends View {
             ".......tt......."+
             "................";
    
+    private static final String BOARD2=
+            "tt.............."+
+            "tt.............."+
+            "hhhhhhhhhhhhhh.."+
+            "................"+
+            "................"+
+            "..hhhhhhhhhhhhhh"+
+            "................"+
+            "................"+
+            "hhhhhhhhhhhhhh.."+
+            "................"+
+            "................"+
+            "..hhhhhhhhhhhhhh"+
+            "................"+
+            "................"+
+            "hhhhhhhhhhhhhh.."+
+            "................"+
+            "................"+
+            "..hhhhhhhhhhhhhh"+
+            "................"+
+            "................"+
+            "hhhhhhhhhhhhhh.."+
+            "................"+
+            "................"+
+            "..hhhhhhhhhhhhhh"+
+            "................"+
+            "...............b";
+    
+    private static final String BOARD3=
+    
+     		"b...hh.........."+        
+     		"....hh.........."+    		            
+     		"....hh.........."+
+     		"....hh.....hh..."+    		            
+     		"....hh.....hh..."+    		           
+     		"...........hh..."+        
+     		"...........hh..."+    		            
+     		"...........hh..."+    		 
+     		"hhhhhhhhhhhhh..."+    		            
+     		"................"+    		            
+     		"................"+    		            
+     		"................"+
+     		"...hhhhhhhhhhhhh"+    		            
+     		"................"+
+     		"................"+    		            
+     		"hhhhhhh..hhhhhhh"+    		            
+     		"......h..h......"+    		            
+     		"......h..h......"+    		            
+     		"......h..h......"+    		            
+     		"......h..h......"+    		            
+     		"................"+    		           
+     		"...hhhhhhhhhh..."+    		            
+     		"................"+    		            
+     		".......tt......."+    		            
+     		".......tt......."+    		            
+     		"................";
+    
+    private static final String BOARD4=
+            ".....h......h..b"+
+            "............h..."+
+            "...h...hh...h..."+
+            "...h...hh......."+
+            "...h............"+
+            "...hhhhhhhhhhhhh"+
+            "................"+
+            ".......h........"+
+            "hhhhhhhhhh...hhh"+
+            ".......h........"+
+            ".......h........"+
+            "...h...h..hhh..."+
+            "...h...h..hhh..."+
+            "...h...h........"+
+            "...h...hhh...hhh"+
+            "...h............"+
+            "...h............"+
+            "...hhhhhhhhhhhhh"+
+            "........h......."+
+            "....h.......h..."+
+            "hhhhhhhhhhhhh..."+
+            "....h.......h..."+
+            "....h.......h..."+
+            "hhhhh...h...h..."+
+            "tt..h...h...h..."+
+            "tt......h......."+
+            "tt......h.......";
   
     
     
@@ -110,6 +196,7 @@ public class World extends View {
     }
     
     
+    
     //TODO AP ALL: weitere Level entwerfen
     
     /** Konstruktor
@@ -126,6 +213,21 @@ public class World extends View {
     	mPaint.setColor(Color.GRAY);
     	mDifficulty=difficulty;
     	mHelper=new FXHelper(context);
+
+    		if (level==1){
+    		mBoard = BOARD1;
+    		}
+    		else if (level == 2){
+    			mBoard = BOARD2;
+    		}
+    		else if (level == 3){
+    			mBoard = BOARD3;
+    		}
+    		else if (level == 4){
+    			mBoard = BOARD4;
+    		}
+    	
+
     	
     	//TODO AP Welt: restliche Übergabeparameter speichern, Hilfsobjekte anlegen
     }
@@ -144,18 +246,16 @@ public class World extends View {
     	
     	mTileSize = width/NUM_COLS;
     	mHelper.initBitmaps(mWidth, mHeight, mTileSize, width/20);
-    	//TODO AP Welt: Kachelgr��e berechnen
+    	//TODO AP Welt: Kachelgr��e berechnen
     	//TODO AP Welt: Bitmaps initialisieren
         //TODO AP Welt: Spielfeld-Objekte anlegen (Kugel, Ziel, Hindernisse)
     	 
-        char c;
+        char c=' ';
         int index = 0;
         
         	for(int row = 0; row < NUM_ROWS; row++) {
         		for(int col = 0; col < NUM_COLS; col++) {
-        			
-        			c = BOARD1.charAt(index++);
-        			
+        				c = mBoard.charAt(index++);
         			createGameObjects(c, col, row);
         		}    	
         	}    
@@ -168,7 +268,7 @@ public class World extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 
-    	//TODO AP2: Hintergrund l�schen
+    	//TODO AP2: Hintergrund l�schen
     	canvas.drawColor(Color.BLACK);
     	//TODO AP2: Ziel zeichnen
     	  	    	    	

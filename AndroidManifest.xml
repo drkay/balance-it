@@ -8,7 +8,7 @@
         android:minSdkVersion="10"
         android:targetSdkVersion="19" />
     <uses-permission android:name="android.permission.VIBRATE"/>
-
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -28,6 +28,10 @@
             android:label="@string/title_activity_game"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.example.balanceit.InfoActivity"
+            android:label="@string/title_activity_info" >
         </activity>
     </application>
 

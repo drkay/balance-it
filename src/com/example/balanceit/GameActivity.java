@@ -1,6 +1,7 @@
 package com.example.balanceit;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -22,6 +23,12 @@ public class GameActivity extends Activity {
     /** Callback-Methode, die beim Initialisieren der Activity aufgerufen wird (eine Art Konstruktor für die Activity) */
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
+    	Intent intent = getIntent();
+    	int level = intent.getIntExtra("LEVEL",  0);
+    	// 0 ist der default, wenn LEVEL nicht gesetzt wurde
+    	int difficulty = intent.getIntExtra("DIFFICULTY",  0);
+
+
         //Aufruf der entsprechenden Basisklassen-Methode
 		super.onCreate(savedInstanceState);
 
@@ -35,7 +42,7 @@ public class GameActivity extends Activity {
 
         //TODO AP2: Member initialisieren (SensorListener und World Instanzen)
         mSensorListener=new GravitySensorListener();
-		mWorld = new World(this,mSensorListener,1,0);
+    	mWorld = new World(this, mSensorListener, level, difficulty);
 		
 		//TODO AP2: World-Instanz statt activity_game.xml als ContentView setzen
         setContentView(mWorld);
@@ -43,23 +50,23 @@ public class GameActivity extends Activity {
     
     /** Callback-Methode, wenn die Aktivität aktiv wird (in den Vordergrund kommt) */
     @Override
-     protected void onResume() {
+    protected void onResume() {
          //Aufruf der Basisklassen-Methode
          super.onResume();
 
          //TODO AP2: registriere den SensorListener
          mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY),SensorManager.SENSOR_DELAY_GAME);
-     }
+    }
 
-     /** Callback-Methode, wenn die Aktivität inaktiv wird (nicht mehr im Vordergrund ist) */
-   @Override
-     protected void onPause() {
+    /** Callback-Methode, wenn die Aktivität inaktiv wird (nicht mehr im Vordergrund ist) */
+    @Override
+    protected void onPause() {
          //Aufruf der Basisklassen-Methode
          super.onPause();
 
          //TODO AP2: stoppe den SensorListener (das spart Strom, wenn die App nicht im Vordergrund ist)
          mSensorManager.unregisterListener(mSensorListener);
-     }
+    }
 
    // TODO AP Framework: evtl weitere benötigte Methoden...
 }
