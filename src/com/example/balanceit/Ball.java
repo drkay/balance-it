@@ -28,6 +28,8 @@ class Ball {
     //Membervariablen mit bewegten Kugeldaten (aktuelle Position)
     public float mPosX;
     public float mPosY;
+    public float mStepX;
+    public float mStepY;
 
     /** Konstruktor 
      * @param x Startposition X der Kugel
@@ -76,8 +78,16 @@ class Ball {
      */
     public void updatePosition(float sensorX, float sensorY) {
         //TODO AP2: als Testimplementierung die Sensorwerte auf die Kugelposition aufaddieren
-    	mPosX=mPosX+mSpeed*sensorX;
-    	mPosY=mPosY+mSpeed*sensorY;
+    	mStepX=mSpeed*sensorX;
+    	if (mStepX>mTileSize){
+    		mStepX=mTileSize;
+    	}
+    	mStepY=mSpeed*sensorY;
+    	if (mStepY>mTileSize){
+    		mStepY=mTileSize;
+    	}
+    	mPosX=mPosX+mStepX;
+    	mPosY=mPosY+mStepY;
     	
     	//TODO AP Kugel: Kugelposition mit Sensordaten aktualisieren 
     }
@@ -104,7 +114,12 @@ class Ball {
     
     	//TODO AP Kugel: Kugelposition innerhalb des Spielfelds halten
     	//TODO AP Kugel: true zurückliefern bei Kollision mit den Wänden 
-    	return false;
+
+    if (mPosX==0 || mPosX==width-(2*mRadius) || mPosY==0 || mPosY==height-(2*mRadius) ){
+    	return true;
+    }
+    else return false;
+  
     }
 
     /** teste ob Kugelzentrum innerhalb des Kachelobjekts ist,
@@ -126,7 +141,7 @@ class Ball {
     			return true; 
     		}
     	}
-    	Log.v(World.LOGTAG,"Pos:"+mPosX+","+mPosY);
+//    	Log.v(World.LOGTAG,"Pos:"+mPosX+","+mPosY);
     	if(tile.mType == Tile.Type.CIRCLE){
 			if (Math.sqrt((mPosX-tile.mPosX) * (mPosX-tile.mPosX)+ (mPosY-tile.mPosY)*(mPosY-tile.mPosY)) <= 0.5* mTileSize){
 				return true;
