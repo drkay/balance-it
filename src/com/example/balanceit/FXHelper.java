@@ -22,20 +22,26 @@ public class FXHelper {
 
     // App-Context von Android
     private Context mContext;
+  
 
     //TODO AP Effekte: weitere Membervariablen (Android Manager Klassen für Sound & Vibrations, IDs für verschiedene Sounds, Bitmaps für die Objekte)
+
     Bitmap mResizedBitmapBall;
     Bitmap mResizedBitmapHole;
     Bitmap mResizedBitmapTarget;
     Bitmap mResizedBitmapBackground;
 
-    /** Konstruktor
+  
+    private Vibrator mV;
+/** Konstruktor
      * @param context Kontext der Android-Activity
-     */
+     */ 
     FXHelper(Context context) {
     	mContext=context;
     	
     	//TODO AP Effekte: Membervariablen anlegen, Managerklassen vom System holen, Sounds laden
+    	mContext = context;
+    	mV = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
     }
  
     /** löse Vibration aus
@@ -43,6 +49,8 @@ public class FXHelper {
      */
     public void vibrate(int durationInMs){
     	//TODO AP Effekte: Vibrationseffekt auslösen
+    	 mV.vibrate(50);
+
     }
 
     /**spiele Soundeffekt ab

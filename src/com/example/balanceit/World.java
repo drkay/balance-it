@@ -286,7 +286,10 @@ public class World extends View {
     	
     	//TODO AP2: Kugel bewegen
     	mBall.updatePosition(-mSensorListener.mSensorX,mSensorListener.mSensorY);
-    	mBall.resolveCollisionWithBounds(mWidth, mHeight);
+    		if(mBall.resolveCollisionWithBounds(mWidth, mHeight) == true){
+    			mHelper.vibrate(500);
+    		}
+    		
     	 //TODO AP2: Kugel zeichnen
     	mBall.draw(canvas);
     	//TODO AP2: Test ob Ziel erreicht
