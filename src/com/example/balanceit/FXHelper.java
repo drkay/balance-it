@@ -30,6 +30,7 @@ public class FXHelper {
      * @param context Kontext der Android-Activity
      */
     FXHelper(Context context) {
+    	mContext=context;
     	//TODO AP Effekte: Membervariablen anlegen, Managerklassen vom System holen, Sounds laden
     }
  
@@ -55,7 +56,8 @@ public class FXHelper {
      */
     public void initBitmaps(int screenWidth, int screenHeight, int tileSize, int ballRadius){
     	//TODO AP Effekte: die Bitmaps für die verschiedenen Spielobjekte (Hindernis, Zielbereich, Spielkugel, Hintergrund) einlesen
-    	// auf die richtige Größe (abhängig von Bildschirm-& Kachelgröße) skalieren und in Membervariablen zwischenspeichern    	
+    	// auf die richtige Größe (abhängig von Bildschirm-& Kachelgröße) skalieren und in Membervariablen zwischenspeichern    
+    	Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(),R.drawable.ball);
     }
 
     /** Zugriff auf die Bitmap eines Objekts
