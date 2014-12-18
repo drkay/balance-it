@@ -24,13 +24,17 @@ public class FXHelper {
     private Context mContext;
 
     //TODO AP Effekte: weitere Membervariablen (Android Manager Klassen für Sound & Vibrations, IDs für verschiedene Sounds, Bitmaps für die Objekte)
-
+    Bitmap mResizedBitmapBall;
+    Bitmap mResizedBitmapHole;
+    Bitmap mResizedBitmapTarget;
+    Bitmap mResizedBitmapBackground;
 
     /** Konstruktor
      * @param context Kontext der Android-Activity
      */
     FXHelper(Context context) {
     	mContext=context;
+    	
     	//TODO AP Effekte: Membervariablen anlegen, Managerklassen vom System holen, Sounds laden
     }
  
@@ -57,7 +61,14 @@ public class FXHelper {
     public void initBitmaps(int screenWidth, int screenHeight, int tileSize, int ballRadius){
     	//TODO AP Effekte: die Bitmaps für die verschiedenen Spielobjekte (Hindernis, Zielbereich, Spielkugel, Hintergrund) einlesen
     	// auf die richtige Größe (abhängig von Bildschirm-& Kachelgröße) skalieren und in Membervariablen zwischenspeichern    
-    	Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(),R.drawable.ball);
+    	Bitmap bitmapBall = BitmapFactory.decodeResource(mContext.getResources(),R.drawable.ball);
+    	Bitmap bitmapHole = BitmapFactory.decodeResource(mContext.getResources(),R.drawable.hole2);
+    	Bitmap bitmapTarget = BitmapFactory.decodeResource(mContext.getResources(),R.drawable.grill);
+    	Bitmap bitmapBackground = BitmapFactory.decodeResource(mContext.getResources(),R.drawable.wood1);
+    	mResizedBitmapBall = Bitmap.createScaledBitmap(bitmapBall, 2*ballRadius, 2*ballRadius, false);
+    	mResizedBitmapHole = Bitmap.createScaledBitmap(bitmapHole, tileSize, tileSize, false);
+    	mResizedBitmapTarget = Bitmap.createScaledBitmap(bitmapTarget, tileSize, tileSize, false);
+    	mResizedBitmapBackground = Bitmap.createScaledBitmap(bitmapBackground, screenWidth, screenHeight, false);
     }
 
     /** Zugriff auf die Bitmap eines Objekts
@@ -66,7 +77,21 @@ public class FXHelper {
      */
     public Bitmap getBitmap(ObjectType type){
     	//TODO AP Effekte: die passende Bitmap für das Objekt zurückgeben
-        return null;
+    	if(type == ObjectType.BOARD) {
+    		return mResizedBitmapBackground;
+    	}
+    	if(type == ObjectType.HOLE) {
+    		return mResizedBitmapHole;
+    	}
+    	
+    	if(type == ObjectType.TARGET) {
+    		return mResizedBitmapTarget;
+    	}
+        
+    	if(type == ObjectType.BALL) {
+    		return mResizedBitmapBall;
+    	}
+    	return null;
     }
 
     

@@ -48,6 +48,7 @@ class Ball {
     	mPaint.setColor(Color.RED);
 		mStartPosX=x;
 		mStartPosY=y; 
+		mBitmap=bitmap;
 		
 		if (mDifficulty ==0){
 			mSpeed = 4;

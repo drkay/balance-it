@@ -181,17 +181,17 @@ public class World extends View {
     	    	
     	if(objectType == 'h') {
     		Bitmap holeBitmap = mHelper.getBitmap(ObjectType.HOLE);
-    		mHoles.add(new Tile(Tile.Type.CIRCLE, col*mTileSize, row*mTileSize, mTileSize, holeBitmap));
+    		mHoles.add(new Tile(Tile.Type.CIRCLE, col*mTileSize, row*mTileSize, mTileSize, mHelper.getBitmap(ObjectType.HOLE)));
     	}
     	
     	if(objectType == 't') {
     		Bitmap tileBitmap = mHelper.getBitmap(ObjectType.TARGET);
-    		mTargets.add(new Tile(Tile.Type.SQUARE, col*mTileSize, row*mTileSize, mTileSize, tileBitmap));
+    		mTargets.add(new Tile(Tile.Type.SQUARE, col*mTileSize, row*mTileSize, mTileSize, mHelper.getBitmap(ObjectType.TARGET)));
     	}
     	
     	if(objectType == 'b') {
     		Bitmap ballBitmap = mHelper.getBitmap(ObjectType.BALL);
-        	mBall = new Ball(col*mTileSize, row*mTileSize, mTileSize/2, mTileSize, mDifficulty, ballBitmap);
+        	mBall = new Ball(col*mTileSize, row*mTileSize, mTileSize/2, mTileSize, mDifficulty, mHelper.getBitmap(ObjectType.BALL));
     	}
     }
     
@@ -245,7 +245,7 @@ public class World extends View {
     	mHeight = height;
     	
     	mTileSize = width/NUM_COLS;
-    	mHelper.initBitmaps(mWidth, mHeight, mTileSize, width/20);
+    	mHelper.initBitmaps(mWidth, mHeight, mTileSize, mTileSize/2);
     	//TODO AP Welt: Kachelgr��e berechnen
     	//TODO AP Welt: Bitmaps initialisieren
         //TODO AP Welt: Spielfeld-Objekte anlegen (Kugel, Ziel, Hindernisse)
@@ -269,7 +269,7 @@ public class World extends View {
     protected void onDraw(Canvas canvas) {
 
     	//TODO AP2: Hintergrund l�schen
-    	canvas.drawColor(Color.BLACK);
+    	canvas.drawBitmap(mHelper.getBitmap(ObjectType.BOARD), 0, 0, null);
     	//TODO AP2: Ziel zeichnen
     	  	    	    	
     	//TODO AP Welt: Hintergrund zeichnen
