@@ -4,5 +4,6 @@
     <string name="app_name">BalanceIt</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_game">GameActivity</string>
+    <string name="title_activity_info">InfoActivity</string>
 
 </resources>
